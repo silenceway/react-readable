@@ -1,19 +1,51 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import { fetchCategories } from '../utils/api';
+import { setCategories } from '../actions/categories';
+import CategoryList from './CategoryList';
 
 class App extends Component {
+  state = {
+    categories: null,
+  }
+
+  getCategories() {
+    fetchCategories()
+      .then((categories) => this.props.setCategories(categories)
+    );
+  }
+  componentDidMount() {
+    this.getCategories();
+  }
+
   render() {
+    const {categories} = this.props.categories;
+
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Readable</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <CategoryList list={categories}/>
       </div>
+
+
     );
   }
 }
 
-export default App;
+function mapDispatchToProps (dispatch) {
+  return {
+    setCategories: (data) => dispatch(setCategories(data)),
+  }
+}
+
+function mapStateToProps({categories}) {
+  return {
+    categories: categories,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
