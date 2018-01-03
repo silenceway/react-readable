@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { fetchPost, votePost } from '../utils/api';
+import CommentList from './CommentList'
 
 class PostView extends Component {
     state = {
@@ -69,9 +70,10 @@ class PostView extends Component {
                     </ul>
                 </div>
                 <div>{post.body}</div>
+                <div><CommentList post={post.id} /></div>
             </div>
         )
     }
 }
-  
+
 export default withRouter(PostView);

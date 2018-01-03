@@ -3,6 +3,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux';
 import { fetchPosts, fetchPost, updatePost } from '../utils/api';
 import { setPosts } from '../actions/posts';
+import { uuidv4 } from '../utils/helpers';
 
 class PostForm extends Component {
     state = {
@@ -60,7 +61,7 @@ class PostForm extends Component {
         const post = this.state.post;
 
         if (!post.id) {
-            post.id = this.uuidv4();
+            post.id = uuidv4();
             post.timestamp = Date.now();
         }
 
@@ -71,13 +72,6 @@ class PostForm extends Component {
 
                 this.props.history.push('/');
             });
-    }
-    uuidv4() {
-        // by broofa https://stackoverflow.com/users/109538
-        // from https://stackoverflow.com/a/2117523
-        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-          (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-        )
     }
     render () {
         const categories = this.props.categories.categories;

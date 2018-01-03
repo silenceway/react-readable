@@ -14,7 +14,6 @@ export function fetchPosts(category = '') {
     .then(( data ) => data);
 }
 
-
 export function fetchPost(postId = '') {
   const url = `${ROOT_URL}/posts/${postId}`;
 
@@ -34,3 +33,22 @@ export function votePost(post, type) {
     .then((res) => { return res.json()})
     .then(( data ) => { console.log(data); });
 }
+
+export function fetchComments(post) {
+  return fetch(`${ROOT_URL}/posts/${post}/comments`, {headers: {"Authorization": "whatever-you-want", "Content-Type": "application/json"}, method: 'GET' })
+    .then((res) => { return res.json()})
+    .then(( data ) => data);
+}
+
+export function updateComment(comment) {
+  return fetch(`${ROOT_URL}/comments`, {headers: {"Authorization": "whatever-you-want", "Content-Type": "application/json"}, body: JSON.stringify(comment), method: 'POST' })
+    .then((res) => { return res.json()})
+    .then(( data ) => { console.log(data); });
+}
+
+export function voteComment(comment, type) {
+  return fetch(`${ROOT_URL}/comments/${comment}`, {headers: {"Authorization": "whatever-you-want", "Content-Type": "application/json"}, body: JSON.stringify({ "option" : type}), method: 'POST' })
+    .then((res) => { return res.json()})
+    .then(( data ) => { console.log(data); });
+}
+
