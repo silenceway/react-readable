@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom';
-import { fetchPosts } from '../utils/api';
+import { fetchPosts, votePost } from '../utils/api';
 import { setPosts, sortPosts } from '../actions/posts';
 import './PostList.css';
 
@@ -41,6 +41,17 @@ class PostList extends Component {
   navigateToNewPost() {
     this.props.history.push('/create');
   }
+  upVote(post) {
+    votePost(post, "upVote")
+        .then(() => this.getPosts());
+  }
+  downVote(post) {
+    votePost(post, "downVote")
+        .then(() => this.getPosts());
+  }
+  editPost(post) {
+    this.props.history.push('/edit/'+post.id);
+  }
   render () {
     const posts = this.props.posts.posts;
 
@@ -61,6 +72,15 @@ class PostList extends Component {
           {posts.map((item) => (
               <article key={item.id}>
                 <Link to={"/post/" + item.id}>{item.title}</Link>
+                <ul>
+                  <li><em>{item.author}</em></li>
+                  <li>{new Date(item.timestamp).toISOString()}</li>
+                  <li>Comments: {item.commentCount}</li>
+                  <li>Score: {item.voteScore}
+                  <button onClick={() => this.upVote(item)}>Up</button>
+                  <button onClick={() => this.downVote(item)}>Down</button></li>
+                  <li><button onClick={() => this.editPost(item)}>Edit Post</button></li>
+                </ul>
               </article>
           ))}
         </div>
