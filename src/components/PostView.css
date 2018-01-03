@@ -1,0 +1,20 @@
+.post-information ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+    border-bottom: 1px solid #888;
+}
+
+.post-information ul li {
+    display: inline-block;
+    font-size: 0.8em;
+    line-height: 1em;
+    margin-right: -4px;
+    padding: 0 10px 5px;
+}
+
+.post-view .content {
+    margin: 0 0 20px;
+    padding: 20px 0 20px;
+    border-bottom: 1px solid #888;
+}

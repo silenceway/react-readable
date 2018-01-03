@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts, fetchPost, updatePost } from '../utils/api';
 import { setPosts } from '../actions/posts';
 import { uuidv4 } from '../utils/helpers';
+import './PostForm.css';
 
 class PostForm extends Component {
     state = {

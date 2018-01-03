@@ -11,8 +11,8 @@ export default function posts (state = [], action) {
       return {
         ...state,
         posts: (action.sort === 'date') ? 
-          state.posts.sort((a, b) => b.timestamp - a.timestamp) :
-          state.posts.sort((a, b) => a.voteScore - b.voteScore)
+          state.posts.sort((a, b) => a.timestamp - b.timestamp) :
+          state.posts.sort((a, b) => b.voteScore - a.voteScore)
       }
     default :
       return state

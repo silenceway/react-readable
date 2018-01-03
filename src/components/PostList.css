@@ -1,0 +1,12 @@
+.post-list .post-menu {
+    text-align: right;
+}
+
+.post-list article {
+    text-align: initial;
+    padding-bottom: 10px;
+}
+
+.post-list article a {
+    color: #333333;
+}

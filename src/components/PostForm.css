@@ -1,0 +1,10 @@
+.post-form input,
+.post-form select,
+.post-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.post-form textarea {
+    height: 90px;
+}

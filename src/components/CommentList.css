@@ -1,0 +1,39 @@
+.comment-list {
+    max-width: 500px;
+}
+
+.comment-list input, .comment-list textarea {
+    width: 100%;
+}
+
+.comment-list ul {
+    list-style: none;
+}
+
+.comment-list ul li {
+    padding: 10px;
+    background-color: #dddddd;
+    margin-bottom: 10px;
+}
+
+.comment-list ul li p {
+    margin: 0;
+    padding: 0;
+}
+
+.comment-list ul li em {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.comment-list ul li ul li {
+    display: inline-block;
+    font-size: 0.8em;
+    line-height: 1em;
+    margin-right: -4px;
+    padding: 0 10px 5px;
+}
+
+.comment-list ul li ul li a {
+    color: #000000;
+}

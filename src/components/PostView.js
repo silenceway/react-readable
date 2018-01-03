@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { fetchPost, votePost } from '../utils/api';
-import CommentList from './CommentList'
+import CommentList from './CommentList';
+import './PostView.css';
 
 class PostView extends Component {
     state = {
@@ -58,19 +59,21 @@ class PostView extends Component {
     
         return (
             <div className='post-view'>
-                <h2>{post.title}</h2>
-                <div>
-                    <ul>
-                        <li>{post.author}</li>
-                        <li>{formatted}</li>
-                        <li>{post.voteScore}
-                        <button onClick={() => this.upVote()}>Up</button>
-                        <button onClick={() => this.downVote()}>Down</button></li>
-                        <li><button onClick={() => this.editPost()}>Edit</button></li>
-                    </ul>
-                </div>
-                <div>{post.body}</div>
-                <div><CommentList post={post.id} /></div>
+                <article>
+                    <h2>{post.title}</h2>
+                    <div class="post-information">
+                        <ul>
+                            <li>{post.author}</li>
+                            <li>{formatted}</li>
+                            <li>{post.voteScore}
+                            <button onClick={() => this.upVote()}>Up</button>
+                            <button onClick={() => this.downVote()}>Down</button></li>
+                            <li><button onClick={() => this.editPost()}>Edit Post</button></li>
+                        </ul>
+                    </div>
+                    <div class="content">{post.body}</div>
+                    <div><CommentList post={post.id} /></div>
+                </article>
             </div>
         )
     }

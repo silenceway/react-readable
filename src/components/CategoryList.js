@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './CategoryList.css';
 
 export default function CategoryList ({ list }) {
   if (!list)
     return (<p>No categories</p>);
 
   return (
-    <div className='category-list'>
-        <ul>
+    <nav className='category-list'>
+        <ul id="nav-menu">
           <li key="Home">
             <Link to='/'>All</Link>
           </li>
@@ -17,6 +18,6 @@ export default function CategoryList ({ list }) {
             </li>
         ))}
         </ul>
-    </div>
+    </nav>
   )
 }

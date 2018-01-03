@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom';
 import { fetchPosts } from '../utils/api';
 import { setPosts, sortPosts } from '../actions/posts';
+import './PostList.css';
 
 class PostList extends Component {
     constructor(props) {
@@ -31,6 +32,9 @@ class PostList extends Component {
       .then((posts) => this.props.setPosts(posts)
     );
   }
+  onChangeSort(e) {
+    this.props.sortPosts(e.value);
+  }
   componentDidMount() {
     this.updateState();
   }
@@ -45,16 +49,20 @@ class PostList extends Component {
 
     return (
         <div className='post-list'>
-        <button onClick={() => this.props.sortPosts('date')}>Sort by date</button>
-        <button onClick={() => this.props.sortPosts('score')}>Sort by score</button>
-        <button onClick={() => this.navigateToNewPost()}>New Post</button>
-            <ul>
-            {posts.map((item) => (
-                <li key={item.id}>
-                    <Link to={"/post/" + item.id}>{item.title}</Link>
-                </li>
-            ))}
-            </ul>
+          <div className="post-menu">
+            <select 
+              onChange={event => this.onChangeSort({ value: event.target.value })}>
+              <option value="none" disabled>Select</option>
+              <option value="date">Sort by date</option>
+              <option value="score">Sort by score</option>
+            </select>
+            <button onClick={() => this.navigateToNewPost()}>New Post</button>
+          </div>
+          {posts.map((item) => (
+              <article key={item.id}>
+                <Link to={"/post/" + item.id}>{item.title}</Link>
+              </article>
+          ))}
         </div>
     )
   }

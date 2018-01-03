@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { fetchComments, voteComment } from '../utils/api';
 import { setComments } from '../actions/comments';
 import CommentForm from './CommentForm';
+import './CommentList.css';
 
 class CommentList extends Component {
     state = {
@@ -36,16 +37,17 @@ class CommentList extends Component {
             post = this.props.post;
 
         if (!comments || !comments.length)
-            return (<div><CommentForm post={post} /><p>No comments.</p></div>);
+            return (<div className='comment-list'><h3>Comments</h3><CommentForm post={post} /><p>No comments.</p></div>);
 
         return (
             <div className='comment-list'>
+                <h3>Comments</h3>
                 <CommentForm post={post} />
                 <ul>
                     {comments.map((item) => (
                         <li key={item.id}>
-                            <p><em>{item.author}</em></p>
                             {item.body}
+                            <p><em>{item.author}</em></p>
                             <ul>
                                 <li>
                                     <Link to={item.id} onClick={(e) => this.editComment(e)}>Edit</Link>
@@ -54,8 +56,8 @@ class CommentList extends Component {
                                     <button onClick={() => this.upVote(item.id)}>Up</button>
                                     <button onClick={() => this.downVote(item.id)}>Down</button>
                                 </li>
-                                {item.edit && <CommentForm comment={item} post={post} />}
-                    </ul>
+                            </ul>
+                            {item.edit && <CommentForm comment={item} post={post} />}
                         </li>
                     ))}
                 </ul>
