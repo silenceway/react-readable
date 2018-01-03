@@ -13,7 +13,7 @@ export default function CategoryList ({ list }) {
           </li>
         {list.map((item) => (
             <li key={item.name}>
-              <Link to={item.path}>{item.name}</Link>
+              <Link to={"/"+item.path}>{item.name}</Link>
             </li>
         ))}
         </ul>

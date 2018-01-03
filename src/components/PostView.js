@@ -47,14 +47,14 @@ class PostView extends Component {
     render() {
         const post = this.state.post;
         let dateTime, formatted;
-        if (post) {
+
+        if (!post || post.error) {
+            return (<p>No post.</p>);
+        } else {
             dateTime = new Date(post.timestamp);
             formatted = dateTime.toISOString();
         }
-
-        if (!post)
-            return (<p>No posts.</p>);
-
+    
         return (
             <div className='post-view'>
                 <h2>{post.title}</h2>
