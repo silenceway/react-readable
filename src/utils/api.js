@@ -28,3 +28,9 @@ export function updatePost(post) {
     .then((res) => { return res.json()})
     .then(( data ) => { console.log(data); });
 }
+
+export function votePost(post, type) {
+  return fetch(`${ROOT_URL}/posts/${post.id}`, {headers: {"Authorization": "whatever-you-want", "Content-Type": "application/json"}, body: JSON.stringify({ "option" : type}), method: 'POST' })
+    .then((res) => { return res.json()})
+    .then(( data ) => { console.log(data); });
+}
