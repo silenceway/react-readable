@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from '../actions/constants'
+import { FETCH_CATEGORIES } from '../actions/types'
   
 export default function categories (state = [], action) {
   if (action.type === FETCH_CATEGORIES) {

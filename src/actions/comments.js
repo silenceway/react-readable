@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS } from './constants'
+import { FETCH_COMMENTS } from './types'
 
 export function setComments(comments) {
     return {

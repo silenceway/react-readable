@@ -1,4 +1,4 @@
-import { FETCH_POSTS, SORT_POSTS } from './constants'
+import { FETCH_POSTS, SORT_POSTS } from './types'
 
 export function setPosts(posts) {
     return {

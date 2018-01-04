@@ -62,16 +62,8 @@ class App extends Component {
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    setCategories: (data) => dispatch(setCategories(data)),
-  }
+function mapStateToProps({categories}) {
+  return { categories, }
 }
 
-function mapStateToProps({categories, posts}) {
-  return {
-    categories: categories,
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, {setCategories})(App));

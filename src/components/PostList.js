@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom';
 import { fetchPosts, votePost, deletePost } from '../utils/api';
-import { setPosts, sortPosts } from '../actions/posts';
+import * as actions from '../actions/posts';
 import './PostList.css';
 
 class PostList extends Component {
@@ -89,17 +89,10 @@ class PostList extends Component {
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    setPosts: (data) => dispatch(setPosts(data)),
-    sortPosts: (data) => dispatch(sortPosts(data)),
-  }
-}
-  
 function mapStateToProps({ posts }) {
   return {
     posts: posts,
   }
 }
   
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostList));
+export default withRouter(connect(mapStateToProps, actions)(PostList));
