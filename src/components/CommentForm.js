@@ -56,9 +56,9 @@ class CommentForm extends Component {
 
         return (
             <div className='comment-form'>
-                <textarea defaultValue={comment.body} value={comment.body} name="body" placeholder="Body:" required={true}
+                <textarea value={comment.body} name="body" placeholder="Body:" required={true}
                     onChange={(event) => this.setBody(event.target.value)} />
-                <input defaultValue={comment.author} value={comment.author} name="author" placeholder="Author:" required={true}
+                <input type="text" value={comment.author} name="author" placeholder="Author:" required={true}
                     onChange={(event) => this.setAuthor(event.target.value)} />
                 <button onClick={() => this.saveComment()}>Save</button>
             </div>

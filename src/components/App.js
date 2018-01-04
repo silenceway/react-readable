@@ -49,7 +49,7 @@ class App extends Component {
               render={() => (
                 <PostForm/>
               )} />
-            <Route path="/post/:id" exact
+            <Route path="/:category/:id" exact
               render={() => (
                 <PostView/>
               )} />

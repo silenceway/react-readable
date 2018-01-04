@@ -71,7 +71,7 @@ class PostList extends Component {
           </div>
           {posts.map((item) => (
               <article key={item.id}>
-                <Link to={"/post/" + item.id}>{item.title}</Link>
+                <Link to={"/" + item.category + "/" + item.id}>{item.title}</Link>
                 <ul>
                   <li><em>{item.author}</em></li>
                   <li>{new Date(item.timestamp).toISOString()}</li>
