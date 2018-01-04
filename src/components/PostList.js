@@ -7,30 +7,26 @@ import { setPosts, sortPosts } from '../actions/posts';
 import './PostList.css';
 
 class PostList extends Component {
-    constructor(props) {
-        super(props);
-        
-       //Here ya go
-        this.props.history.listen((location, action) => {
-          console.log("on route change");
-          this.updateState();
-        });
-      }
-      
   state = {
     posts: null,
     category: ''
   }
+  componentDidUpdate() {
+    if (((this.props.match && this.props.match.params.category) && (this.state.category === '')) || 
+      (this.state.category !== this.props.match.params.category && (this.props.match && this.props.match.params.category)) ||
+      (!(this.props.match && this.props.match.params.category) && (this.state.category !== '')))
+      this.updateState();
+  }
   updateState() {
-    if (this.props.match && this.props.match.params.category)
+    if (this.props.match && this.props.match.params.category) {
       this.setState({ category: this.props.match.params.category }, this.getPosts);
-    else
+    } else {
       this.setState({ category: '' }, this.getPosts);
+    }
   }
   getPosts() {
     fetchPosts(this.state.category)
-      .then((posts) => this.props.setPosts(posts)
-    );
+      .then((posts) => this.props.setPosts(posts));
   }
   onChangeSort(e) {
     this.props.sortPosts(e.value);
@@ -60,7 +56,7 @@ class PostList extends Component {
     const posts = this.props.posts.posts;
 
     if (!posts || !posts.length)
-      return (<p>No posts.</p>);
+      return (<div className='post-list'><div className="post-menu"><button onClick={() => this.navigateToNewPost()}>New Post</button></div><p>No posts.</p></div>);
 
     return (
         <div className='post-list'>
