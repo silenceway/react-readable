@@ -67,7 +67,7 @@ class PostView extends Component {
             <div className='post-view'>
                 <article>
                     <h2>{post.title}</h2>
-                    <div class="post-information">
+                    <div className="post-information">
                         <ul>
                             <li>{post.author}</li>
                             <li>{formatted}</li>
