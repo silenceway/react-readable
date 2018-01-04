@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchComments, voteComment } from '../utils/api';
+import { fetchComments, voteComment, deleteComment } from '../utils/api';
 import { setComments } from '../actions/comments';
 import CommentForm from './CommentForm';
 import './CommentList.css';
@@ -23,6 +23,10 @@ class CommentList extends Component {
         const comments = this.props.comments;
         comments.map((comment) => comment.id === e.target.getAttribute('href') ? comment.edit = true : null);
         this.props.setComments(comments);
+    }
+    removeComment(comment) {
+        deleteComment(comment)
+            .then(() => this.getComments());
     }
     upVote(comment) {
         voteComment(comment, "upVote")
@@ -51,6 +55,9 @@ class CommentList extends Component {
                             <ul>
                                 <li>
                                     <Link to={item.id} onClick={(e) => this.editComment(e)}>Edit</Link>
+                                </li>
+                                <li>
+                                    <Link to={item.id} onClick={(e) => this.removeComment(item)}>Delete</Link>
                                 </li>
                                 <li>{item.voteScore}
                                     <button onClick={() => this.upVote(item.id)}>Up</button>

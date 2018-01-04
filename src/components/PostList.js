@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom';
-import { fetchPosts, votePost } from '../utils/api';
+import { fetchPosts, votePost, deletePost } from '../utils/api';
 import { setPosts, sortPosts } from '../actions/posts';
 import './PostList.css';
 
@@ -52,6 +52,10 @@ class PostList extends Component {
   editPost(post) {
     this.props.history.push('/edit/'+post.id);
   }
+  deletePost(post) {
+    deletePost(post)
+        .then(() => this.getPosts());
+  }
   render () {
     const posts = this.props.posts.posts;
 
@@ -80,6 +84,7 @@ class PostList extends Component {
                   <button onClick={() => this.upVote(item)}>Up</button>
                   <button onClick={() => this.downVote(item)}>Down</button></li>
                   <li><button onClick={() => this.editPost(item)}>Edit Post</button></li>
+                  <li><button onClick={() => this.deletePost(item)}>Delete Post</button></li>
                 </ul>
               </article>
           ))}

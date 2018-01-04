@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
-import { fetchPost, votePost } from '../utils/api';
+import { fetchPost, votePost, deletePost } from '../utils/api';
 import CommentList from './CommentList';
 import './PostView.css';
 
@@ -46,6 +46,12 @@ class PostView extends Component {
         votePost(post, "downVote")
             .then(() => this.getPost());
     }
+    deletePost() {
+        const post = this.state.post;
+
+        deletePost(post)
+            .then(() => this.props.history.push('/'));
+    }
     render() {
         const post = this.state.post;
         let dateTime, formatted;
@@ -69,6 +75,7 @@ class PostView extends Component {
                             <button onClick={() => this.upVote()}>Up</button>
                             <button onClick={() => this.downVote()}>Down</button></li>
                             <li><button onClick={() => this.editPost()}>Edit Post</button></li>
+                            <li><button onClick={() => this.deletePost()}>Delete Post</button></li>
                         </ul>
                     </div>
                     <div class="content">{post.body}</div>
