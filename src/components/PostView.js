@@ -78,7 +78,7 @@ class PostView extends Component {
                             <li><button onClick={() => this.deletePost()}>Delete Post</button></li>
                         </ul>
                     </div>
-                    <div class="content">{post.body}</div>
+                    <div className="content">{post.body}</div>
                     <div><CommentList post={post.id} /></div>
                 </article>
             </div>
